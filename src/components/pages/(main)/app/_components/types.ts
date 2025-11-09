@@ -5,3 +5,9 @@ export interface ButtonProps {
   leftIcon?: React.ReactNode;
   containerClass?: string;
 }
+
+export interface AnimatedTitleProps {
+  title: string;
+  containerClass?: string;
+
+}
