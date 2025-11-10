@@ -38,7 +38,7 @@ export default function About() {
           containerClass="mt-5 !text-black text-center"
         />
 
-        <div className="about-subtext">
+        <div className="about-subtext text-black">
           <p>The Game of Games begins-your life, now an epic MMORPG</p>
           <p>Zentry unites every player from countless games and platforms</p>
         </div>

@@ -9,5 +9,11 @@ export interface ButtonProps {
 export interface AnimatedTitleProps {
   title: string;
   containerClass?: string;
+}
 
+export interface BentoCardProps {
+  src: string;
+  title: React.ReactNode;
+  description: string;
+  isComingSoon?: boolean
 }
