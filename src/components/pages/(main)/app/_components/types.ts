@@ -15,5 +15,15 @@ export interface BentoCardProps {
   src: string;
   title: React.ReactNode;
   description: string;
-  isComingSoon?: boolean
+  isComingSoon?: boolean;
+}
+
+export interface BentoTiltProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export interface ImageClipBoxProps {
+  src: string;
+  clipClass: string;
 }

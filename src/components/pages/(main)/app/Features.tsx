@@ -1,5 +1,47 @@
+'use client'
 import { TiLocationArrow } from "react-icons/ti";
-import { BentoCardProps } from "./_components/types";
+import { BentoCardProps, BentoTiltProps } from "./_components/types";
+import { useState, useRef } from "react";
+
+
+export const BentoTilt = ({ children, className = "" }: BentoTiltProps) => {
+  const [transformStyle, setTransformStyle] = useState("");
+  const itemRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!itemRef.current) return;
+
+    const { left, top, width, height } =
+      itemRef.current.getBoundingClientRect();
+
+    const relativeX = (event.clientX - left) / width;
+    const relativeY = (event.clientY - top) / height;
+
+    const tiltX = (relativeY - 0.5) * 5;
+    const tiltY = (relativeX - 0.5) * -5;
+
+    const newTransform = `perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(.95, .95, .95)`;
+    setTransformStyle(newTransform);
+  };
+
+  const handleMouseLeave = () => {
+    setTransformStyle("");
+  };
+
+  return (
+    <div
+      ref={itemRef}
+      className={className}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ transform: transformStyle }}
+    >
+      {children}
+    </div>
+  );
+};
+
+
 const BentoCard = ({
   src,
   title,
@@ -57,16 +99,16 @@ export default function Features() {
         </div>
 
         <div className="flex h-[82vh] gap-7">
-          <div className="w-[49%] bento-tilt_1">
+          <BentoTilt className="w-[49%] bento-tilt_1">
             <BentoCard
               src="videos/feature-2.mp4"
               title={<>zigma</>}
               description="An anime and gaming-inspired NFT collection - the IP primed for expansion."
             />
-          </div>
+          </BentoTilt>
 
           <div className="flex flex-1 flex-col gap-10">
-            <div className="h-1/2 w-full bento-tilt_1">
+            <BentoTilt className="h-1/2 w-full bento-tilt_1">
               <BentoCard
                 src="videos/feature-3.mp4"
                 title={
@@ -76,9 +118,9 @@ export default function Features() {
                 }
                 description="A gamified social hub, adding a new dimension of play to social interaction for Web3 communities."
               />
-            </div>
+            </BentoTilt>
 
-            <div className="h-1/2 bento-tilt_1 w-full">
+            <BentoTilt className="h-1/2 bento-tilt_1 w-full">
               <BentoCard
                 src="videos/feature-4.mp4"
                 title={
@@ -88,21 +130,21 @@ export default function Features() {
                 }
                 description="A cross-world AI Agent - elevating your gameplay to be more fun and productive."
               />
-            </div>
+            </BentoTilt>
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-7 mt-10">
-          <div className="bento-tilt_2">
+          <BentoTilt className="bento-tilt_2">
             <div className="flex size-full flex-col justify-between bg-violet-300 p-5">
               <h1 className="bento-title special-font max-w-64 text-black">
                 M<b>o</b>re co<b>m</b>ing s<b>o</b>on.
               </h1>
               <TiLocationArrow className="m-5 scale-[5] self-end" />
             </div>
-          </div>
+          </BentoTilt>
 
-          <div className="bento-tilt_2">
+          <BentoTilt className="bento-tilt_2">
             <video
               src="videos/feature-5.mp4"
               loop
@@ -110,7 +152,7 @@ export default function Features() {
               autoPlay
               className="size-full object-cover object-center"
             />
-          </div>
+          </BentoTilt>
         </div>
       </div>
     </section>

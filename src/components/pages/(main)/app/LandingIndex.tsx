@@ -2,6 +2,9 @@ import Hero from "./Hero";
 import About from "./About";
 import Navbar from "./_components/Navbar";
 import Features from "./Features";
+import Story from "./Story";
+import Contact from "./Contact";
+import Footer from "./Footer";
 
 export default function LandingIndex() {
   return (
@@ -9,9 +12,10 @@ export default function LandingIndex() {
       <Navbar />
       <Hero />
       <About />
-      <Features/>
-
-      {/* <section className="z-0 min-h-screen bg-blue-500"/> */}
+      <Features />
+      <Story />
+      <Contact />
+      <Footer />
     </main>
   );
 }

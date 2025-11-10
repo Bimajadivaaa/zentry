@@ -108,10 +108,10 @@ export default function Hero() {
         className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75"
       >
         <div>
-          <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
+          <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg ">
             <div
               onClick={handleMiniVideoClick}
-              className="origin-center scale-50 opacity-50 transition-all duration-500 ease-in 
+              className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in 
             hover:scale-100 hover:opacity-100"
             >
               <video
@@ -132,14 +132,14 @@ export default function Hero() {
             loop
             muted
             id="next-video"
-            className="absolute-center z-20 size-64 object-cover object-center"
+            className="absolute-center invisible z-20 size-64 object-cover object-center"
             onLoadedData={handleVideoLoaded}
           />
           <video
             src={getVideoSource(
               currentIndex === totalVideos - 1 ? 1 : currentIndex
             )}
-            // autoPlay
+            autoPlay
             loop
             muted
             className="absolute left-0 top-0 size-full object-cover object-center"
